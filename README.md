@@ -63,7 +63,3 @@ Admin credentials: Username: admin Password: admin123
 ## System Requirements
 
 Software : XAMPP 
-
-## Demo
-
-Try the application: https://restaurantshub.000webhostapp.com/
