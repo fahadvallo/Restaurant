@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    include("connection/connect.php");
-    include_once 'product-action.php';
-    error_reporting(0);
-    session_start();
-    function function_alert() { 
-    echo "<script>alert('Thankyou! Your Order Placed successfully!');</script>"; 
-    echo "<script>window.location.replace('your_orders.php');</script>"; 
-    }
-    if(empty($_SESSION["user_id"]))
-    {
-        header('location:login.php');
-    }
-    else{
-    foreach ($_SESSION["cart_item"] as $item)
-    {
-        $item_total += ($item["price"]*$item["quantity"]);
-        if($_POST['submit'])
-        {
-            $SQL="insert into users_orders(u_id,title,quantity,price) values('".$_SESSION["user_id"]."','".$item["title"]."','".$item["quantity"]."','".$item["price"]."')";
-            mysqli_query($db,$SQL);
+include "connection/connect.php";
+include_once 'product-action.php';
+error_reporting(0);
+session_start();
+function function_alert()
+{
+    echo "<script>alert('Thankyou! Your Order Placed successfully!');</script>";
+    echo "<script>window.location.replace('your_orders.php');</script>";
+}
+if (empty($_SESSION["user_id"])) {
+    header('location:login.php');
+} else {
+    foreach ($_SESSION["cart_item"] as $item) {
+        $item_total += ($item["price"] * $item["quantity"]);
+        if ($_POST['submit']) {
+            $SQL = "insert into users_orders(u_id,title,quantity,price) values('" . $_SESSION["user_id"] . "','" . $item["title"] . "','" . $item["quantity"] . "','" . $item["price"] . "')";
+            mysqli_query($db, $SQL);
             unset($_SESSION["cart_item"]);
             unset($item["title"]);
             unset($item["quantity"]);
@@ -29,7 +26,7 @@
             function_alert();
         }
     }
-?>
+    ?>
 
 <head>
     <meta charset="utf-8">
@@ -62,17 +59,14 @@
                             <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Restaurants <span
                                         class="sr-only"></span></a> </li>
                             <?php
-                                if(empty($_SESSION["user_id"]))
-                                {
-                                    echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>
+if (empty($_SESSION["user_id"])) {
+        echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>
                                     <li class="nav-item"><a href="registration.php" class="nav-link active">Signup</a> </li>';
-                                }
-                                else
-                                {
-                                    echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
-                                    echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
-                                }
-                            ?>
+    } else {
+        echo '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
+        echo '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
+    }
+    ?>
                         </ul>
                     </div>
                 </div>
@@ -112,7 +106,7 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>Cart Subtotal</td>
-                                                            <td> <?php echo "₱".$item_total; ?></td>
+                                                            <td> <?php echo "₱" . $item_total; ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Delivery Charges</td>
@@ -121,7 +115,7 @@
                                                         <tr>
                                                             <td class="text-color"><strong>Total</strong></td>
                                                             <td class="text-color"><strong>
-                                                                    <?php echo "₱".$item_total; ?></strong></td>
+                                                                    <?php echo "₱" . $item_total; ?></strong></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -185,9 +179,10 @@
                     </div>
                     <div class="col-xs-12 col-sm-4 address color-gray">
                         <h5>Address</h5>
-                        <p>213, Raheja Chambers, Free Press Journal Road, Nariman Point, Mumbai, Maharashtra 400021,
-                            India</p>
-                        <h5>Phone: +91 8093424562</a></h5>
+                        <p>
+                            Batog langit rabaw daga, Philippines, Earth, Underworld, Realm_669
+                        </p>
+                        <h5>Phone: +639020250502</a></h5>
                     </div>
                     <div class="col-xs-12 col-sm-5 additional-info color-gray">
                         <h5>Addition informations</h5>

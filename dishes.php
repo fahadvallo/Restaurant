@@ -68,7 +68,7 @@ if (empty($_SESSION["user_id"])) {
         <?php $ress = mysqli_query($db, "select * from restaurant where rs_id='$_GET[res_id]'");
 $rows = mysqli_fetch_array($ress);
 ?>
-        <section class="inner-page-hero bg-image" data-image-src="images/img/dish.jpeg">
+        <section class="inner-page-hero bg-image" data-image-src="images/img/dishg.gif">
             <div class="profile">
                 <div class="container">
                     <div class="row">

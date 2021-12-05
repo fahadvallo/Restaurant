@@ -46,20 +46,16 @@
                                     class="sr-only"></span></a> </li>
 
                         <?php
-						if(empty($_SESSION["user_id"]))
-							{
-							echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>
+if (empty($_SESSION["user_id"])) {
+    echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>
 							<li class="nav-item"><a href="registration.php" class="nav-link active">Signup</a> </li>';
-							}
-						else
-							{
-									
-									
-										echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
-									echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
-							}
+} else {
 
-						?>
+    echo '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
+    echo '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
+}
+
+?>
 
                     </ul>
                 </div>
@@ -69,32 +65,26 @@
     <div style=" background-image: url('images/img/background_login.jpg');">
 
         <?php
-include("connection/connect.php"); 
-error_reporting(0); 
-session_start(); 
-if(isset($_POST['submit']))  
-{
-	$username = $_POST['username'];  
-	$password = $_POST['password'];
-	
-	if(!empty($_POST["submit"]))   
-     {
-	$loginquery ="SELECT * FROM users WHERE username='$username' && password='".md5($password)."'"; //selecting matching records
-	$result=mysqli_query($db, $loginquery); //executing
-	$row=mysqli_fetch_array($result);
-	
-if(is_array($row)) 
-{
-$_SESSION["user_id"] = $row['u_id']; 
-header("refresh:1;url=index.php"); 
-} 
-else
-{
-                                      	$message = "Invalid Username or Password!"; 
-                                }
-	 }
-	
-	
+include "connection/connect.php";
+error_reporting(0);
+session_start();
+if (isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    if (!empty($_POST["submit"])) {
+        $loginquery = "SELECT * FROM users WHERE username='$username' && password='" . md5($password) . "'"; //selecting matching records
+        $result = mysqli_query($db, $loginquery); //executing
+        $row = mysqli_fetch_array($result);
+
+        if (is_array($row)) {
+            $_SESSION["user_id"] = $row['u_id'];
+            header("refresh:1;url=index.php");
+        } else {
+            $message = "Invalid Username or Password!";
+        }
+    }
+
 }
 ?>
 
@@ -122,19 +112,12 @@ else
                 </div>
                 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-
-
-
                 <div class="container-fluid pt-3">
                     <p></p>
                 </div>
 
-
-
                 <footer class="footer">
                     <div class="container">
-
-
                         <div class="bottom-footer">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-3 payment-options color-gray">
@@ -159,9 +142,10 @@ else
                                 </div>
                                 <div class="col-xs-12 col-sm-4 address color-gray">
                                     <h5>Address</h5>
-                                    <p>213, Raheja Chambers, Free Press Journal Road, Nariman Point, Mumbai, Maharashtra
-                                        400021, India</p>
-                                    <h5>Phone: +91 8093424562</a></h5>
+                                    <p>
+                                        Batog langit rabaw daga, Philippines, Earth, Underworld, Realm_669
+                                    </p>
+                                    <h5>Phone: +639020250502</a></h5>
                                 </div>
                                 <div class="col-xs-12 col-sm-5 additional-info color-gray">
                                     <h5>Addition informations</h5>

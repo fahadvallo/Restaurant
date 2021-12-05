@@ -34,8 +34,8 @@ $(document).ready(function() {
         overlayClass: 'animsition-overlay-slide',
         overlayParentElement: 'body'
     });
-   
-     $(".bg-image").css("background",function(){var a="url("+$(this).data("image-src")+") no-repeat center center";return a}),$(".bg-image").css("background-size","cover"),
+
+    $(".bg-image").css("background",function(){var a="url("+$(this).data("image-src")+") no-repeat center center";return a}),$(".bg-image").css("background-size","cover"),
         
     /// Range slider   
     $("#ex2").slider({});

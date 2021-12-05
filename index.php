@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include("connection/connect.php");  
-error_reporting(0);  
-session_start(); 
+include "connection/connect.php";
+error_reporting(0);
+session_start();
 
 ?>
 
@@ -37,23 +37,21 @@ session_start();
                         <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Restaurants <span
                                     class="sr-only"></span></a> </li>
                         <?php
-                                if(empty($_SESSION["user_id"])) // if user is not login
-                                {
-                                    echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>
-                                    <li class="nav-item"><a href="registration.php" class="nav-link active">Signup</a> </li>';
-                                }
-                                else
-                                {
-                                    echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
-                                    echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
-                                }
-                            ?>
+if (empty($_SESSION["user_id"])) { // if user is not login
+
+    echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>
+<li class="nav-item"><a href="registration.php" class="nav-link active">Signup</a> </li>';
+} else {
+    echo '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
+    echo '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
+}
+?>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <section class="hero bg-image" data-image-src="images/img/main.jpg">
+    <section class="hero bg-image" data-image-src="images/img/maing.gif">
         <div class="hero-inner">
             <div class="container text-center hero-text font-white">
                 <h1>Order Delivery & Take-Out </h1>
@@ -109,21 +107,20 @@ session_start();
             </div>
             <div class="row">
                 <?php
-            $query_res= mysqli_query($db,"select * from dishes LIMIT 3"); 
-            while($r=mysqli_fetch_array($query_res))
-            {
-                echo '  <div class="col-xs-12 col-sm-6 col-md-4 food-item">
+$query_res = mysqli_query($db, "select * from dishes LIMIT 3");
+while ($r = mysqli_fetch_array($query_res)) {
+    echo '  <div class="col-xs-12 col-sm-6 col-md-4 food-item">
                 <div class="food-item-wrap">
-                <div class="figure-wrap bg-image" data-image-src="admin/Res_img/dishes/'.$r['img'].'"></div>
+                <div class="figure-wrap bg-image" data-image-src="admin/Res_img/dishes/' . $r['img'] . '"></div>
                 <div class="content">
-                <h5><a href="dishes.php?res_id='.$r['rs_id'].'">'.$r['title'].'</a></h5>
-                <div class="product-name">'.$r['slogan'].'</div>
-                <div class="price-btn-block"> <span class="price">₱'.$r['price'].'</span> <a href="dishes.php?res_id='.$r['rs_id'].'" class="btn theme-btn-dash pull-right">Order Now</a> </div>
+                <h5><a href="dishes.php?res_id=' . $r['rs_id'] . '">' . $r['title'] . '</a></h5>
+                <div class="product-name">' . $r['slogan'] . '</div>
+                <div class="price-btn-block"> <span class="price">₱' . $r['price'] . '</span> <a href="dishes.php?res_id=' . $r['rs_id'] . '" class="btn theme-btn-dash pull-right">Order Now</a> </div>
                 </div>
                 </div>
                 </div>';
-            }
-        ?>
+}
+?>
             </div>
         </div>
     </section>
@@ -204,11 +201,10 @@ session_start();
                         <nav class="primary pull-left">
                             <ul>
                                 <li><a href="#" class="selected" data-filter="*">all</a> </li>
-                                <?php 
-$res= mysqli_query($db,"select * from res_category");
-while($row=mysqli_fetch_array($res))
-{
-echo '<li><a href="#" data-filter=".'.$row['c_name'].'"> '.$row['c_name'].'</a> </li>';
+                                <?php
+$res = mysqli_query($db, "select * from res_category");
+while ($row = mysqli_fetch_array($res)) {
+    echo '<li><a href="#" data-filter=".' . $row['c_name'] . '"> ' . $row['c_name'] . '</a> </li>';
 }
 ?>
                             </ul>
@@ -223,22 +219,21 @@ echo '<li><a href="#" data-filter=".'.$row['c_name'].'"> '.$row['c_name'].'</a> 
 
 
                     <?php
-$ress= mysqli_query($db,"select * from restaurant");  
-while($rows=mysqli_fetch_array($ress))
-{
+$ress = mysqli_query($db, "select * from restaurant");
+while ($rows = mysqli_fetch_array($ress)) {
 
-$query= mysqli_query($db,"select * from res_category where c_id='".$rows['c_id']."' ");
-$rowss=mysqli_fetch_array($query);
+    $query = mysqli_query($db, "select * from res_category where c_id='" . $rows['c_id'] . "' ");
+    $rowss = mysqli_fetch_array($query);
 
-echo ' <div class="col-xs-12 col-sm-12 col-md-6 single-restaurant all '.$rowss['c_name'].'">
+    echo ' <div class="col-xs-12 col-sm-12 col-md-6 single-restaurant all ' . $rowss['c_name'] . '">
 <div class="restaurant-wrap">
 <div class="row">
 <div class="col-xs-12 col-sm-3 col-md-12 col-lg-3 text-xs-center">
-<a class="restaurant-logo" href="dishes.php?res_id='.$rows['rs_id'].'" > <img src="admin/Res_img/'.$rows['image'].'" alt="Restaurant logo"> </a>
+<a class="restaurant-logo" href="dishes.php?res_id=' . $rows['rs_id'] . '" > <img src="admin/Res_img/' . $rows['image'] . '" alt="Restaurant logo"> </a>
 </div>
 
 <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
-<h5><a href="dishes.php?res_id='.$rows['rs_id'].'" >'.$rows['title'].'</a></h5> <span>'.$rows['address'].'</span>
+<h5><a href="dishes.php?res_id=' . $rows['rs_id'] . '" >' . $rows['title'] . '</a></h5> <span>' . $rows['address'] . '</span>
 </div>
 </div>
 </div>
@@ -279,9 +274,10 @@ echo ' <div class="col-xs-12 col-sm-12 col-md-6 single-restaurant all '.$rowss['
                     </div>
                     <div class="col-xs-12 col-sm-4 address color-gray">
                         <h5>Address</h5>
-                        <p>213, Raheja Chambers, Free Press Journal Road, Nariman Point, Mumbai, Maharashtra 400021,
-                            India</p>
-                        <h5>Phone: +91 8093424562</a></h5>
+                        <p>
+                            Batog langit rabaw daga, Philippines, Earth, Underworld, Realm_669
+                        </p>
+                        <h5>Phone: +639020250502</a></h5>
                     </div>
                     <div class="col-xs-12 col-sm-5 additional-info color-gray">
                         <h5>Addition informations</h5>
