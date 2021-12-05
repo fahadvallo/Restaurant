@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include("connection/connect.php"); 
+include "connection/connect.php";
 error_reporting(0);
 session_start();
 
-include_once 'product-action.php'; 
+include_once 'product-action.php';
 
 ?>
-
 
 <head>
     <meta charset="utf-8">
@@ -40,23 +39,15 @@ include_once 'product-action.php';
                                     class="sr-only">(current)</span></a> </li>
                         <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Restaurants <span
                                     class="sr-only"></span></a> </li>
-
                         <?php
-						if(empty($_SESSION["user_id"]))
-							{
-							echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>
-							<li class="nav-item"><a href="registration.php" class="nav-link active">Signup</a> </li>';
-							}
-						else
-							{
-									
-									
-										echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
-									echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
-							}
-
-						?>
-
+if (empty($_SESSION["user_id"])) {
+    echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>
+        <li class="nav-item"><a href="registration.php" class="nav-link active">Signup</a> </li>';
+} else {
+    echo '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
+    echo '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
+}
+?>
                     </ul>
                 </div>
             </div>
@@ -66,20 +57,17 @@ include_once 'product-action.php';
         <div class="top-links">
             <div class="container">
                 <ul class="row links">
-
                     <li class="col-xs-12 col-sm-4 link-item"><span>1</span><a href="restaurants.php">Choose
                             Restaurant</a></li>
                     <li class="col-xs-12 col-sm-4 link-item active"><span>2</span><a
                             href="dishes.php?res_id=<?php echo $_GET['res_id']; ?>">Pick Your favorite food</a></li>
                     <li class="col-xs-12 col-sm-4 link-item"><span>3</span><a href="#">Order and Pay</a></li>
-
                 </ul>
             </div>
         </div>
-        <?php $ress= mysqli_query($db,"select * from restaurant where rs_id='$_GET[res_id]'");
-									     $rows=mysqli_fetch_array($ress);
-										  
-										  ?>
+        <?php $ress = mysqli_query($db, "select * from restaurant where rs_id='$_GET[res_id]'");
+$rows = mysqli_fetch_array($ress);
+?>
         <section class="inner-page-hero bg-image" data-image-src="images/img/dish.jpeg">
             <div class="profile">
                 <div class="container">
@@ -87,52 +75,41 @@ include_once 'product-action.php';
                         <div class="col-xs-12 col-sm-12  col-md-4 col-lg-4 profile-img">
                             <div class="image-wrap">
                                 <figure>
-                                    <?php echo '<img src="admin/Res_img/'.$rows['image'].'" alt="Restaurant logo">'; ?>
+                                    <?php echo '<img src="admin/Res_img/' . $rows['image'] . '" alt="Restaurant logo">'; ?>
                                 </figure>
                             </div>
                         </div>
-
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 profile-desc">
                             <div class="pull-left right-text white-txt">
                                 <h6><a href="#"><?php echo $rows['title']; ?></a></h6>
                                 <p><?php echo $rows['address']; ?></p>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
         </section>
         <div class="breadcrumb">
             <div class="container">
-
             </div>
         </div>
         <div class="container m-t-30">
             <div class="row">
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
-
                     <div class="widget widget-cart">
                         <div class="widget-heading">
                             <h3 class="widget-title text-dark">
                                 Your Cart
                             </h3>
-
-
                             <div class="clearfix"></div>
                         </div>
                         <div class="order-row bg-white">
                             <div class="widget-body">
-
-
                                 <?php
-
 $item_total = 0;
 
-foreach ($_SESSION["cart_item"] as $item)  
-{
-?>
+foreach ($_SESSION["cart_item"] as $item) {
+    ?>
 
                                 <div class="title-row">
                                     <?php echo $item["title"]; ?><a
@@ -143,7 +120,7 @@ foreach ($_SESSION["cart_item"] as $item)
                                 <div class="form-group row no-gutter">
                                     <div class="col-xs-8">
                                         <input type="text" class="form-control b-r-0"
-                                            value=<?php echo "₱".$item["price"]; ?> readonly id="exampleSelect1">
+                                            value=<?php echo "₱" . $item["price"]; ?> readonly id="exampleSelect1">
 
                                     </div>
                                     <div class="col-xs-4">
@@ -154,52 +131,36 @@ foreach ($_SESSION["cart_item"] as $item)
                                 </div>
 
                                 <?php
-$item_total += ($item["price"]*$item["quantity"]); 
+$item_total += ($item["price"] * $item["quantity"]);
 }
 ?>
-
-
-
                             </div>
                         </div>
-
-
-
                         <div class="widget-body">
                             <div class="price-wrap text-xs-center">
                                 <p>TOTAL</p>
-                                <h3 class="value"><strong><?php echo "₱".$item_total; ?></strong></h3>
+                                <h3 class="value"><strong><?php echo "₱" . $item_total; ?></strong></h3>
                                 <p>Free Delivery!!!</p>
                                 <?php
-                                        if($item_total==0){
-                                        ?>
+if ($item_total == 0) {
+    ?>
 
-
-                                <a href="checkout.php?res_id=<?php echo $_GET['res_id'];?>&action=check"
+                                <a href="checkout.php?res_id=<?php echo $_GET['res_id']; ?>&action=check"
                                     class="btn theme-btn btn-lg disabled">Checkout</a>
 
                                 <?php
-                                        }
-                                        else{   
-                                        ?>
-                                <a href="checkout.php?res_id=<?php echo $_GET['res_id'];?>&action=check"
+} else {
+    ?>
+                                <a href="checkout.php?res_id=<?php echo $_GET['res_id']; ?>&action=check"
                                     class="btn theme-btn btn-lg active">Checkout</a>
-                                <?php   
-                                        }
-                                        ?>
-
+                                <?php
+}
+?>
                             </div>
                         </div>
-
-
-
-
                     </div>
                 </div>
-
                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-6">
-
-
                     <div class="menu-widget" id="2">
                         <div class="widget-heading">
                             <h3 class="widget-title text-dark">
@@ -212,26 +173,21 @@ $item_total += ($item["price"]*$item["quantity"]);
                             <div class="clearfix"></div>
                         </div>
                         <div class="collapse in" id="popular2">
-                            <?php  
-									$stmt = $db->prepare("select * from dishes where rs_id='$_GET[res_id]'");
-									$stmt->execute();
-									$products = $stmt->get_result();
-									if (!empty($products)) 
-									{
-									foreach($products as $product)
-										{
-						
-													
-													 
-													 ?>
+                            <?php
+$stmt = $db->prepare("select * from dishes where rs_id='$_GET[res_id]'");
+$stmt->execute();
+$products = $stmt->get_result();
+if (!empty($products)) {
+    foreach ($products as $product) {
+        ?>
                             <div class="food-item">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-lg-8">
                                         <form method="post"
-                                            action='dishes.php?res_id=<?php echo $_GET['res_id'];?>&action=add&id=<?php echo $product['d_id']; ?>'>
+                                            action='dishes.php?res_id=<?php echo $_GET['res_id']; ?>&action=add&id=<?php echo $product['d_id']; ?>'>
                                             <div class="rest-logo pull-left">
                                                 <a class="restaurant-logo pull-left"
-                                                    href="#"><?php echo '<img src="admin/Res_img/dishes/'.$product['img'].'" alt="Food logo">'; ?></a>
+                                                    href="#"><?php echo '<img src="admin/Res_img/dishes/' . $product['img'] . '" alt="Food logo">'; ?></a>
                                             </div>
 
                                             <div class="rest-descr">
@@ -255,10 +211,10 @@ $item_total += ($item["price"]*$item["quantity"]);
 
 
                             <?php
-									  }
-									}
-									
-								?>
+}
+}
+
+?>
 
 
 
@@ -471,7 +427,6 @@ $item_total += ($item["price"]*$item["quantity"]);
             </div>
         </div>
     </div>
-
     <script src="js/jquery.min.js"></script>
     <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

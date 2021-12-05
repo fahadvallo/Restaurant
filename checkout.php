@@ -1,53 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include("connection/connect.php");
-include_once 'product-action.php';
-error_reporting(0);
-session_start();
-
-
-function function_alert() { 
-      
-
+    include("connection/connect.php");
+    include_once 'product-action.php';
+    error_reporting(0);
+    session_start();
+    function function_alert() { 
     echo "<script>alert('Thankyou! Your Order Placed successfully!');</script>"; 
     echo "<script>window.location.replace('your_orders.php');</script>"; 
-} 
-
-if(empty($_SESSION["user_id"]))
-{
-	header('location:login.php');
-}
-else{
-
-										  
-												foreach ($_SESSION["cart_item"] as $item)
-												{
-											
-												$item_total += ($item["price"]*$item["quantity"]);
-												
-													if($_POST['submit'])
-													{
-						
-													$SQL="insert into users_orders(u_id,title,quantity,price) values('".$_SESSION["user_id"]."','".$item["title"]."','".$item["quantity"]."','".$item["price"]."')";
-						
-														mysqli_query($db,$SQL);
-														
-                                                        
-                                                        unset($_SESSION["cart_item"]);
-                                                        unset($item["title"]);
-                                                        unset($item["quantity"]);
-                                                        unset($item["price"]);
-														$success = "Thankyou! Your Order Placed successfully!";
-
-                                                        function_alert();
-
-														
-														
-													}
-												}
+    }
+    if(empty($_SESSION["user_id"]))
+    {
+        header('location:login.php');
+    }
+    else{
+    foreach ($_SESSION["cart_item"] as $item)
+    {
+        $item_total += ($item["price"]*$item["quantity"]);
+        if($_POST['submit'])
+        {
+            $SQL="insert into users_orders(u_id,title,quantity,price) values('".$_SESSION["user_id"]."','".$item["title"]."','".$item["quantity"]."','".$item["price"]."')";
+            mysqli_query($db,$SQL);
+            unset($_SESSION["cart_item"]);
+            unset($item["title"]);
+            unset($item["quantity"]);
+            unset($item["price"]);
+            $success = "Thankyou! Your Order Placed successfully!";
+            function_alert();
+        }
+    }
 ?>
-
 
 <head>
     <meta charset="utf-8">
@@ -65,7 +47,6 @@ else{
 </head>
 
 <body>
-
     <div class="site-wrapper">
         <header id="header" class="header-scroll top-header headrom">
             <nav class="navbar navbar-dark">
@@ -80,23 +61,18 @@ else{
                                         class="sr-only">(current)</span></a> </li>
                             <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Restaurants <span
                                         class="sr-only"></span></a> </li>
-
                             <?php
-						if(empty($_SESSION["user_id"]))
-							{
-								echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>
-							  <li class="nav-item"><a href="registration.php" class="nav-link active">Signup</a> </li>';
-							}
-						else
-							{
-									
-									
-										echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
-									echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
-							}
-
-						?>
-
+                                if(empty($_SESSION["user_id"]))
+                                {
+                                    echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>
+                                    <li class="nav-item"><a href="registration.php" class="nav-link active">Signup</a> </li>';
+                                }
+                                else
+                                {
+                                    echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
+                                    echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
+                                }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -106,7 +82,6 @@ else{
             <div class="top-links">
                 <div class="container">
                     <ul class="row links">
-
                         <li class="col-xs-12 col-sm-4 link-item"><span>1</span><a href="restaurants.php">Choose
                                 Restaurant</a></li>
                         <li class="col-xs-12 col-sm-4 link-item "><span>2</span><a href="#">Pick Your favorite food</a>
@@ -116,38 +91,25 @@ else{
                     </ul>
                 </div>
             </div>
-
             <div class="container">
-
                 <span style="color:green;">
                     <?php echo $success; ?>
                 </span>
-
             </div>
-
-
-
-
             <div class="container m-t-30">
                 <form action="" method="post">
                     <div class="widget clearfix">
-
                         <div class="widget-body">
                             <form method="post" action="#">
                                 <div class="row">
-
                                     <div class="col-sm-12">
                                         <div class="cart-totals margin-b-20">
                                             <div class="cart-totals-title">
                                                 <h4>Cart Summary</h4>
                                             </div>
                                             <div class="cart-totals-fields">
-
                                                 <table class="table">
                                                     <tbody>
-
-
-
                                                         <tr>
                                                             <td>Cart Subtotal</td>
                                                             <td> <?php echo "₱".$item_total; ?></td>
@@ -162,10 +124,6 @@ else{
                                                                     <?php echo "₱".$item_total; ?></strong></td>
                                                         </tr>
                                                     </tbody>
-
-
-
-
                                                 </table>
                                             </div>
                                         </div>
@@ -197,12 +155,10 @@ else{
                             </form>
                         </div>
                     </div>
-
             </div>
         </div>
         </form>
     </div>
-
     <footer class="footer">
         <div class="row bottom-footer">
             <div class="container">
