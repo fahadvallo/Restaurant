@@ -66,7 +66,7 @@ if (empty($_SESSION["user_id"])) {
             </div>
         </div>
         <div class="inner-page-hero bg-image" data-image-src="images/img/resg.gif">
-            <div class="container"> </div><br><br><br><br><br><br>
+            <div class="container"> </div><br><br>
         </div>
         <div class="result-show">
             <div class="container">

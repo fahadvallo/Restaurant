@@ -51,7 +51,7 @@ if (empty($_SESSION["user_id"])) { // if user is not login
             </div>
         </nav>
     </header>
-    <section class="hero bg-image" data-image-src="images/img/maing.gif">
+    <section class="hero bg-image" data-image-src="images/img/main.gif">
         <div class="hero-inner">
             <div class="container text-center hero-text font-white">
                 <h1>Order Delivery & Take-Out </h1>
@@ -275,7 +275,7 @@ while ($rows = mysqli_fetch_array($ress)) {
                     <div class="col-xs-12 col-sm-4 address color-gray">
                         <h5>Address</h5>
                         <p>
-                            Batog langit rabaw daga, Philippines, Earth, Underworld, Realm_669
+                            Bam City, Carapdapan, Philippines, Earth, Underworld, Realm_669
                         </p>
                         <h5>Phone: +639020250502</a></h5>
                     </div>
