@@ -62,7 +62,8 @@ if (empty($_SESSION["user_id"])) {
             </div>
         </nav>
     </header>
-    <div style=" background-image: url('images/img/background_login.jpg');">
+
+    <div style=" background-image: url('images/img/login.jpg');">
 
         <?php
 include "connection/connect.php";
@@ -143,13 +144,14 @@ if (isset($_POST['submit'])) {
                                 <div class="col-xs-12 col-sm-4 address color-gray">
                                     <h5>Address</h5>
                                     <p>
-                                    Burgos St., Paniqui, Tarlac
-                        </p>
-                        <h5>Phone: +639020250502</a></h5>
+                                        Burgos St., Paniqui, Tarlac
+                                    </p>
+                                    <h5>Phone: +639020250502</a></h5>
                                 </div>
                                 <div class="col-xs-12 col-sm-5 additional-info color-gray">
                                     <h5>Addition informations</h5>
-                                    <p>Join thousands of other restaurants who benefit from having partnered with us.
+                                    <p>Join thousands of other restaurants who benefit from having partnered with
+                                        us.
                                     </p>
                                 </div>
                             </div>

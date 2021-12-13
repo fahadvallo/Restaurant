@@ -61,7 +61,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <div style=" background-image: url('images/img/background_login.jpg');">
+    <div style=" background-image: url('images/img/login.jpg');">
         <header id="header" class="header-scroll top-header headrom">
             <nav class="navbar navbar-dark">
                 <div class="container">
@@ -195,9 +195,9 @@ if (empty($_SESSION["user_id"])) {
                                 <div class="col-xs-12 col-sm-4 address color-gray">
                                     <h5>Address</h5>
                                     <p>
-                                    Burgos St., Paniqui, Tarlac
-                        </p>
-                        <h5>Phone: +639020250502</a></h5>
+                                        Burgos St., Paniqui, Tarlac
+                                    </p>
+                                    <h5>Phone: +639020250502</a></h5>
                                 </div>
                                 <div class="col-xs-12 col-sm-5 additional-info color-gray">
                                     <h5>Addition informations</h5>
