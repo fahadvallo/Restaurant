@@ -31,7 +31,7 @@ include_once 'product-action.php';
             <div class="container">
                 <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse"
                     data-target="#mainNavbarCollapse">&#9776;</button>
-                <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/food-mania-logo.png"
+                <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/main-logo.png"
                         alt=""> </a>
                 <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
                     <ul class="nav navbar-nav">
@@ -257,9 +257,9 @@ if (!empty($products)) {
                             </div>
                             <div class="col-xs-12 col-sm-4 address color-gray">
                                 <h5>Address</h5>
-                                <p>213, Raheja Chambers, Free Press Journal Road, Nariman Point, Mumbai, Maharashtra
-                                    400021, India</p>
-                                <h5>Phone: +91 8093424562</a></h5>
+                                Burgos St., Paniqui, Tarlac
+                        </p>
+                        <h5>Phone: +639020250502</a></h5>
                             </div>
                             <div class="col-xs-12 col-sm-5 additional-info color-gray">
                                 <h5>Addition informations</h5>

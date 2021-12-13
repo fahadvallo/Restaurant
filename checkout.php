@@ -50,7 +50,7 @@ if (empty($_SESSION["user_id"])) {
                 <div class="container">
                     <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse"
                         data-target="#mainNavbarCollapse">&#9776;</button>
-                    <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/food-mania-logo.png"
+                    <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/main-logo.png"
                             alt=""> </a>
                     <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
                         <ul class="nav navbar-nav">
@@ -180,7 +180,7 @@ if (empty($_SESSION["user_id"])) {
                     <div class="col-xs-12 col-sm-4 address color-gray">
                         <h5>Address</h5>
                         <p>
-                            Batog langit rabaw daga, Philippines, Earth, Underworld, Realm_669
+                            Burgos St., Paniqui, Tarlac
                         </p>
                         <h5>Phone: +639020250502</a></h5>
                     </div>
