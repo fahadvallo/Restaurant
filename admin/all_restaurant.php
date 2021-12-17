@@ -194,9 +194,9 @@ if (!mysqli_num_rows($query) > 0) {
 
 																								<td>' . $rows['address'] . '</td>
 
-																								<td><div class="col-md-3 col-lg-8 m-b-10">
-																								<center><img src="Res_img/' . $rows['image'] . '" class="img-responsive radius"  style="min-width:150px;min-height:100px;"/></center>
-																								</div></td>
+<td><div class="col-md-3 col-lg-8 m-b-10">
+<center><img src="Res_img/' . $rows['image'] . '" class="img-responsive radius"  style="min-width:150px;min-height:100px;"/></center>
+</div></td>
 
 																								<td>' . $rows['date'] . '</td>
 																									 <td><a href="delete_restaurant.php?res_del=' . $rows['rs_id'] . '" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a>
